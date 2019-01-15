@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">JokerSolitaire</string>
+    <string name="splah_message">Welcome to JokerSolitaire</string>
+    <string name="splash_message_loading">Loading...</string>
+    <string name="splash_image">splashImage</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+</resources>

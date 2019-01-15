@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <item
+            android:id="@+id/navigation_undo"
+            android:icon="@drawable/undo"
+            android:title="Songs"/>
+
+        <item
+            android:id="@+id/navigation_settings"
+            android:icon="@drawable/settings"
+            android:title="Albums"/>
+
+        <item
+            android:id="@+id/navigation_theme"
+            android:icon="@drawable/theme"
+            android:title="Artists"/>
+
+
+
+</android.support.constraint.ConstraintLayout>
