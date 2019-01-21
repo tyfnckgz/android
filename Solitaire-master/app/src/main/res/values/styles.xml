@@ -11,7 +11,7 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/background2</item>
-    </style>
+    <item name="android:windowBackground">@drawable/background_green</item>
+</style>
 
 </resources>

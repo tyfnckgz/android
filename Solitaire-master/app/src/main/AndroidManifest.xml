@@ -32,8 +32,12 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="sensor"
-            android:theme="@style/MainTheme"></activity>
-
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/MainTheme" />
+        <activity android:name=".ThemeActivity"></activity>
     </application>
 
 </manifest>

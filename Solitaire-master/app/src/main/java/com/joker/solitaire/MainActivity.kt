@@ -1,13 +1,13 @@
 package com.joker.solitaire
 
 
-import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
-import android.support.v7.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.ActionBar
+import android.support.v7.app.AppCompatActivity
+import android.util.DisplayMetrics
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -45,23 +45,7 @@ class MainActivity : AppCompatActivity(), GameView {
     val tableauPileViews: Array<TableauPileView?> = arrayOfNulls(7)
     private var mTextMessage: TextView? = null
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_undo -> {
-                mTextMessage!!.setText(R.string.title_home)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_theme -> {
-                mTextMessage!!.setText(R.string.title_dashboard)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_settings -> {
-                mTextMessage!!.setText(R.string.title_notifications)
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -71,19 +55,16 @@ class MainActivity : AppCompatActivity(), GameView {
         GamePresenter.setGameView(this)
         GameModel.resetGame()
 
+
+
         verticalLayout {
             leftPadding = dip(4)
             rightPadding = dip(4)
             topPadding = dip(8)
-            linearLayout{
-                button(""){
-                    textSize = 26f
 
-                }.lparams(width= wrapContent,height = dip(80)){
-                    horizontalMargin=dip(5)
-                    verticalMargin=dip(10)
-                }
-            }
+
+
+
             linearLayout {
                 deckView = deckView().lparams(cardWidth, cardHeight)
                 wastePileView = wastePileView().lparams(cardWidth, cardHeight)
@@ -96,11 +77,50 @@ class MainActivity : AppCompatActivity(), GameView {
                 for (i in 0..6) {
                     tableauPileViews[i] = tableauPileView(i).lparams(cardWidth, matchParent)
                 }
-            }.lparams(height = matchParent) {
+            }.lparams(height = dip(520)) {
                 topMargin = cardHeight / 2
             }
 
+            linearLayout{
+                val displayMetrics = DisplayMetrics()
+                windowManager.defaultDisplay.getMetrics(displayMetrics)
+                imageButton{
+                    imageResource = R.drawable.ic_sync_black_24dp
+                    background = null
+                    drawingCacheBackgroundColor = Color.WHITE
+                    onClick {
+                        val intent = getIntent() as Intent
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                        finish()
+                        overridePendingTransition(0,0)
+                        startActivity(intent)
+                        overridePendingTransition(0,0)
+                    }
 
+                }.lparams(width= displayMetrics.widthPixels/4,height = dip(46))
+                imageButton{
+                    imageResource = R.drawable.ic_dashboard_white_24dp
+                    background = null
+                    onClick {
+                        val intent = Intent(this@MainActivity,ThemeActivity::class.java)
+                        startActivity(intent)
+                    }
+                }.lparams(width= displayMetrics.widthPixels/4,height = dip(46))
+                imageButton{
+                    imageResource = R.drawable.ic_build_black_24dp
+                    background = null
+                    onClick {
+                        val intent = Intent(this@MainActivity,SettingsActivity::class.java)
+                        startActivity(intent)
+                    }
+                }.lparams(width= displayMetrics.widthPixels/4,height = dip(46))
+                imageButton{
+                    imageResource = R.drawable.ic_refresh_black_24dp
+                    background = null
+                }.lparams(width= displayMetrics.widthPixels/4,height = dip(46))
+
+
+            }
         }
 
 
@@ -127,6 +147,7 @@ class MainActivity : AppCompatActivity(), GameView {
         update()
         return true
     }
+
 
 
 }
